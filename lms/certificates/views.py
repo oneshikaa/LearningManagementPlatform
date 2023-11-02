@@ -17,13 +17,13 @@ def add_certificate(request):
             certificate = form.save(commit=False)
             certificate.uploader = request.user  # Assign the current user as the uploader
             certificate.save()
-            return redirect('certificate_list')  # Redirect to the certificate list
+            return redirect('certificates:certificate_list')  # Redirect to the certificate list
     else:
         form = CertificateForm()
 
     return render(request, 'certificates/add_certificate.html', {'form': form})
 
-def delete_certificate(certificate_id):
+def delete_certificate(request,certificate_id):
     certificate = Certificate.objects.get(pk=certificate_id)
     certificate.delete()
-    return redirect('certificate_list')
+    return redirect('certificates:certificate_list')
