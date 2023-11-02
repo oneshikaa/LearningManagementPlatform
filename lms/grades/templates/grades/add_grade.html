@@ -75,15 +75,7 @@
  
  </div>
 
- def add_grade(request):
- if request.method == 'POST':
-     form = GradeForm(request.POST)
-     if form.is_valid():
-         form.save()
-         return redirect('grades:list_grades')
- else:
-     form = GradeForm()
- return render(request, 'grades/add_grade.html', {'form': form})
+
 
 
 
