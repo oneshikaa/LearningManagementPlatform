@@ -25,8 +25,10 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('app_users.urls')),
     path('curriculum/',include('curriculum.urls')),
-    path('certificates/',include('certificates.urls'))
-
+    path('certificates/',include('certificates.urls')),
+    path('grades/',include('grades.urls'))
+    
+    
 ]
 
 if settings.DEBUG:
