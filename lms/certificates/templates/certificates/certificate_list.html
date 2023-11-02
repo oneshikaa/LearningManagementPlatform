@@ -88,9 +88,11 @@
                 <h3>{{ certificate.title }}</h3>
                 <p>{{ certificate.description }}</p>
                 <a href="{{ certificate.certificate_file.url }}" download>Download Certificate</a>
+                {% if user.is_authenticated %}
+                <a href="{% url 'certificates:delete_certificate' certificate.id %}" class="btn btn-danger btn-sm">Delete Certificate</a>
+               {% endif %}
             </div>
-        {% empty %}
-            <p>No certificates available.</p>
+        
         {% endfor %}
         {% if user.is_authenticated %}
         <a href="{% url 'certificates:add_certificate' %}"><button type="button" class="btn btn-success btn-lg btn-bloc" >  Add Certificate </button></a>
