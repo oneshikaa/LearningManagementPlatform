@@ -83,9 +83,10 @@
     <div class="box-container">
         {% for subject in standards.subjects.all %}
             <a class="box" href="{% url 'curriculum:lesson_list' slug=subject.slug standard=standards.slug %}">
-                
-                
+               <img src="{{subject.image}}" class="card-img" alt="No image found" height="200px" width="200px">
+               
                 <h3>{{ subject.name }}</h3>
+                <p>{{ subject.description }}</p>
             </a>
         {% endfor %}
     </div>
