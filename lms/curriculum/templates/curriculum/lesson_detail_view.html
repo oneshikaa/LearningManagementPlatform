@@ -65,13 +65,14 @@
  </div>
 
  <nav class="navbar">
-  <a href="{% url 'index' %}" ><i class="fas fa-home"></i><span>Home</span></a>
-  <a href="courses.html"><i class="fas fa-graduation-cap"></i><span>My Courses</span></a>
-  <a href="about.html"><i class="fas fa-chalkboard-user"></i><span>Certificates</span></a>
-  <a href="teachers.html"><i class="fas fa-question"></i><span>Grades</span></a>
-  {% if user.is_authenticated %}
-  <a href="{% url 'user_logout' %}"><i class="fas fa-headset"></i><span>Logout</span></a>
-  {% endif %}
+   <a href="{% url 'index' %}" ><i class="fas fa-home"></i><span>Home</span></a>
+   <a href="{% url 'curriculum:standard_list' %}" ><i class="fas fa-graduation-cap"></i><span>My Courses</span></a>
+   <a href="{% url 'certificates:certificate_list' %}"><i
+         class="fas fa-chalkboard-user"></i><span>Certificates</span></a>
+   <a href="{% url 'grades:list_grades' %}"><i class="fas fa-question"></i><span>Grades</span></a>
+   {% if user.is_authenticated %}
+   <a href="{% url 'user_logout' %}"><i class="fas fa-headset"></i><span>Logout</span></a>
+   {% endif %}
 </nav>
 
 </div>
