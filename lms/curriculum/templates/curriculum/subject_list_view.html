@@ -83,7 +83,7 @@
     <div class="box-container">
         {% for subject in standards.subjects.all %}
             <a class="box" href="{% url 'curriculum:lesson_list' slug=subject.slug standard=standards.slug %}">
-                <i class="fas fa-play"></i>
+                
                 
                 <h3>{{ subject.name }}</h3>
             </a>
