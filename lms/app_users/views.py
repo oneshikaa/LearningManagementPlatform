@@ -8,6 +8,7 @@ from django.views.generic import TemplateView
 from curriculum.models import Standard
 from .models import UserProfileInfo
 from .models import UserProfileInfo
+from django.contrib.auth.models import User
 
 
 # Create your views here.
@@ -86,10 +87,18 @@ class HomeView(TemplateView):
         context = super().get_context_data(**kwargs)
         standards = Standard.objects.all()
         teachers = UserProfileInfo.objects.filter(user_type='teacher')
+        user_profile = UserProfileInfo.objects.get(user=self.request.user)
         context['standards'] = standards
         context['teachers'] = teachers
+        context['user_profile'] = user_profile
+
         return context
 
 
+@login_required
+def view_profile(request, username):
+    user = User.objects.get(username=username)
+    user_profile = UserProfileInfo.objects.get(user=user)
+    return render(request, 'app_users/view_profile.html', {'user_profile': user_profile})
 
 
