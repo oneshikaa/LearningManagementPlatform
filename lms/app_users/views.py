@@ -28,8 +28,8 @@ def user_login(request):
             else:
                 return HttpResponse("ACCOUNT IS DEACTIVATED")
         else:
-            return HttpResponse("Please use correct id and password")
-            # return HttpResponseRedirect(reverse('register'))
+            # return HttpResponse("Please use correct id and password")
+            return HttpResponseRedirect(reverse('register'))
 
     else:
         return render(request, 'app_users/login.html')
@@ -39,11 +39,6 @@ def user_login(request):
 def user_logout(request):
     logout(request)
     return HttpResponseRedirect(reverse('index'))
-
-
-# # Create your views here.
-# def index(request):
-#     return render(request,'app_users/index.html')
 
 # Create your views here.
 # def index(request):
@@ -107,7 +102,7 @@ def update_profile(request):
 
         if form.is_valid():
             form.save()
-            return redirect(reverse('view_profile', kwargs={'username': request.user.username}))# Redirect to the view profile page after successful update
+            return redirect(reverse('view_profile', kwargs={'username': request.user.username}))
     else:
         form = UserProfileInfoForm(instance=request.user.userprofileinfo)
 
