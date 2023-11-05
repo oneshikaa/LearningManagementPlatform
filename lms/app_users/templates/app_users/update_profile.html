@@ -80,19 +80,16 @@
 
 <section class="user-profile">
 
-    <h1 class="heading">User Profile</h1>
- 
-    <div class="info">
-        
-       <div class="user">
-         <img src="{{ user_profile.profile_pic.url }}" class="image" alt="">
-          <h3>Username: {{ user_profile.user.username }}</h3></h3>
-          <p>Bio: {{ user_profile.bio }}</p>
-          <a href="{% url 'update_profile' %}" class="btn">Update Profile</a>
+  <h2>Update Your Profile</h2>
 
-       </div>
-       
-       
+  
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Update Profile</button>
+  </form>
+ 
+    
        
  
  </section>
