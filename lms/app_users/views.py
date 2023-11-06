@@ -81,13 +81,16 @@ class HomeView(TemplateView):
         context = super().get_context_data(**kwargs)
         standards = Standard.objects.all()
         teachers = UserProfileInfo.objects.filter(user_type='teacher')
-        user_profile = UserProfileInfo.objects.get(user=self.request.user)
+        # user_profile = UserProfileInfo.objects.get(user=self.request.user)
         context['standards'] = standards
         context['teachers'] = teachers
-        context['user_profile'] = user_profile
+        # context['user_profile'] = user_profile
+
+        if self.request.user.is_authenticated:
+            user_profile = UserProfileInfo.objects.get(user=self.request.user)
+            context['user_profile'] = user_profile
 
         return context
-
 
 @login_required
 def view_profile(request, username):
