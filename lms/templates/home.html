@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,7 +12,7 @@
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
 
    <!-- custom css file link  -->
-   <link rel="stylesheet" href="static/css/style.css">
+   <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
 </head>
 
@@ -36,16 +37,15 @@
          </div>
 
          <div class="profile">
-            <img src="images/pic-1.jpg" class="image" alt="">
-            <h3 class="name">Your Name</h3>
-            <p class="role">Student</p>
-            <a href="profile.html" class="btn">view profile</a>
+            <img src="{{ user_profile.profile_pic.url }}" class="image" alt="">
+            <h3 class="name">{{ user_profile.user.username }}</h3>
+            <a href="{% url 'view_profile' username=user.username %}" class="btn">view profile</a>
             <div class="flex-btn">
                <a href="{% url 'user_login' %}" class="option-btn">login</a>
                <a href="{% url 'register' %}" class="option-btn">register</a>
             </div>
          </div>
-
+         
       </section>
 
    </header>
@@ -57,12 +57,12 @@
       </div>
 
       <div class="profile">
-         <img src="images/pic-1.jpg" class="image" alt="">
-         <h3 class="name">Your Name</h3>
-         <p class="role">Student</p>
-         <a href="profile.html" class="btn">view profile</a>
+         <img src="{{ user_profile.profile_pic.url }}" class="image" alt="">
+         <h3 class="name">{{ user_profile.user.username }}</h3>
+         <p class="role">{{ user_profile.user.user_type }}</p>
+         <a href="{% url 'view_profile' username=user.username %}" class="btn">view profile</a>
       </div>
-
+     
       <nav class="navbar">
          <a href="{% url 'index' %}" ><i class="fas fa-home"></i><span>Home</span></a>
          <a href="{% url 'curriculum:standard_list' %}" ><i class="fas fa-graduation-cap"></i><span>My Courses</span></a>
@@ -111,14 +111,10 @@
 
 
 
-   <footer class="footer">
 
-
-
-   </footer>
 
    <!-- custom js file link  -->
-   <script src="static/js/script.js"></script>
+   <script src="{% static 'js/script.js' %}"></script>
 
 
 </body>

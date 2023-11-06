@@ -14,6 +14,60 @@
    <!-- custom css file link  -->
    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
+   <style>
+      .form-container {
+          width: 100%;
+          margin: 0 auto;
+          padding: 20px;
+          position: relative; /* Add this line to set a positioning context */
+      }
+  
+      .heading {
+          font-size: 24px;
+          font-weight: bold;
+          position: absolute;
+          top: 20px; 
+          left: 0; 
+          right : 10px;
+      }
+
+      ul {
+        font-size: 18px;
+        list-style-type: none;
+        padding: 0;
+        position: absolute;
+        top: 100px;
+        left: 10px;
+    }
+
+    
+
+    li {
+        margin-bottom: 10px;
+    }
+
+    button {
+        background-color: #007BFF;
+        color: #fff;
+        border: none;
+        padding: 5px 10px;
+        margin-left: 10px;
+        cursor: pointer;
+    }
+
+    .add-button {
+        position: absolute;
+      
+        bottom: -50px; 
+        left: 50%; 
+        transform: translateX(-50%); 
+    }
+  
+  </style>
+  
+   
+  
+
 </head>
 <body>
 
@@ -78,10 +132,11 @@
 
 <section class="form-container">
 
-    <h1>Grades List</h1>
+   <h1 class="heading">Grades List</h1>
+    
     <ul>
         {% for grade in grades %}
-            <li>{{ grade.student.username }} - {{ grade.course.name }}: {{ grade.grade }}
+            <li >{{ grade.student.username }} - {{ grade.course.name }}: {{ grade.grade }}
                <a href="{% url 'grades:delete_grade' grade.id %}"><button type="button" >Delete</button></a>
                <a href="{% url 'grades:update_grade' grade.id %}"><button type="button"  >Edit</button></a>
             </li>
@@ -89,10 +144,10 @@
             <li>No grades available.</li>
         {% endfor %}
     </ul>
-
+    <div class="add-button">
     <a href="{% url 'grades:add_grade' %}"><button type="button" class="btn btn-success btn-lg btn-bloc" >Add Grade</button></a>
-    
-    
+   </div>
+   
 
 
 </section>
@@ -111,11 +166,7 @@
 
 
 
-<footer class="footer">
 
-   
-
-</footer>
 
 <!-- custom js file link  -->
 <script src="{% static 'js/script.js' %}"></script>

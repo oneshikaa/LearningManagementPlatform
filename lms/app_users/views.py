@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from app_users.forms import UserForm, UserProfileInfoForm
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
@@ -7,7 +7,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.views.generic import TemplateView
 from curriculum.models import Standard
 from .models import UserProfileInfo
-from .models import UserProfileInfo
+from django.contrib.auth.models import User
 
 
 # Create your views here.
@@ -28,8 +28,8 @@ def user_login(request):
             else:
                 return HttpResponse("ACCOUNT IS DEACTIVATED")
         else:
-            return HttpResponse("Please use correct id and password")
-            # return HttpResponseRedirect(reverse('register'))
+            # return HttpResponse("Please use correct id and password")
+            return HttpResponseRedirect(reverse('register'))
 
     else:
         return render(request, 'app_users/login.html')
@@ -39,11 +39,6 @@ def user_login(request):
 def user_logout(request):
     logout(request)
     return HttpResponseRedirect(reverse('index'))
-
-
-# # Create your views here.
-# def index(request):
-#     return render(request,'app_users/index.html')
 
 # Create your views here.
 # def index(request):
@@ -86,10 +81,31 @@ class HomeView(TemplateView):
         context = super().get_context_data(**kwargs)
         standards = Standard.objects.all()
         teachers = UserProfileInfo.objects.filter(user_type='teacher')
+        user_profile = UserProfileInfo.objects.get(user=self.request.user)
         context['standards'] = standards
         context['teachers'] = teachers
+        context['user_profile'] = user_profile
+
         return context
 
 
+@login_required
+def view_profile(request, username):
+    user = User.objects.get(username=username)
+    user_profile = UserProfileInfo.objects.get(user=user)
+    return render(request, 'app_users/view_profile.html', {'user_profile': user_profile})
+
+@login_required
+def update_profile(request):
+    if request.method == "POST":
+        form = UserProfileInfoForm(request.POST, request.FILES, instance=request.user.userprofileinfo)
+
+        if form.is_valid():
+            form.save()
+            return redirect(reverse('view_profile', kwargs={'username': request.user.username}))
+    else:
+        form = UserProfileInfoForm(instance=request.user.userprofileinfo)
+
+    return render(request, 'app_users/update_profile.html', {'form': form})
 
 
