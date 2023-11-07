@@ -38,7 +38,13 @@
 
          <div class="profile">
             {% if user.is_authenticated %}
+           
+            
+            {% if user_profile.profile_pic %}
             <img src="{{ user_profile.profile_pic.url }}" class="image" alt="">
+            {% else %}
+             <img src="https://example.com/path_to_default_image.png" class="image" alt="">
+            {% endif %}
             <h3 class="name">{{ user_profile.user.username }}</h3>
             <a href="{% url 'view_profile' username=user.username %}" class="btn">view profile</a>
             {% endif %}
@@ -59,7 +65,13 @@
       </div>
 
       <div class="profile">
-         <img src="{{ user_profile.profile_pic.url }}" class="image" alt="">
+         {% if user.is_authenticated %}
+         {% if user_profile.profile_pic %}
+            <img src="{{ user_profile.profile_pic.url }}" class="image" alt="">
+            {% else %}
+             <img src="https://example.com/path_to_default_image.png" class="image" alt="">
+            {% endif %}
+         {% endif %}
          <h3 class="name">{{ user_profile.user.username }}</h3>
          <p class="role">{{ user_profile.user.user_type }}</p>
          {% if user.is_authenticated %}
