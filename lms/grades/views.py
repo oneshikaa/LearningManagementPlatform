@@ -19,7 +19,14 @@ def add_grade(request):
 
 @login_required
 def list_grades(request):
-    grades = Grade.objects.all()
+    # grades = Grade.objects.all()
+    # return render(request, 'grades/list_grades.html', {'grades': grades})
+
+    if request.user.userprofileinfo.user_type == 'teacher':
+        grades = Grade.objects.all()
+    else:
+        grades = Grade.objects.filter(student=request.user)
+
     return render(request, 'grades/list_grades.html', {'grades': grades})
 
 @login_required
