@@ -29,6 +29,22 @@
         left: 50%; 
         transform: translateX(-50%); 
       }
+
+    
+    .button-les {
+        background-color: var(--main-color);
+        color: white; 
+        
+    }
+    .card-body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        height: 100%; /* Ensure cards fill their container's height */
+    }
+
    </style>
 
 </head>
@@ -104,7 +120,76 @@
 
 
     <div class="box-container">
-        <p>Created on {{lessons.created_at}} by {{lessons.created_by}}</p>
+      
+         <!-- video -->
+         <div >
+            {% if lessons.video %}
+                <div id="player-overlay">
+                    <video controls>
+                        <source src="{{ lessons.video.url }}" type="video/mp4">
+                    </video>
+                </div>
+            {% else %}
+                <!-- Handle the case when there is no video -->
+                
+            {% endif %}
+        </div>
+        
+         <!-- download cards -->
+         <div >
+           <!-- download presentations -->
+                      <div class="ppt">
+                       <div class="card bg-white box-shadow-hover">
+                         <div class="card-body">
+                           <h2 class="card-title">Download Presentations</h2>
+                           {% if lessons.ppt %}
+                           
+                           <a href="{{lessons.ppt.url}}" download>
+                           <button type="button" class="btn btn-primary"><span>Get Files</span></button>
+                           </a>
+                           {% else %}
+                           <p class="card-text" > No PPT available</p>
+                           {% endif %}
+     
+                         </div>
+                       </div>
+                     </div>
+                     <br>
+           <!-- download notes -->
+                     <div class="notes">
+                       <div class="card bg-white box-shadow-hover">
+                         <div class="card-body">
+                           <h2 class="card-title">Download Notes</h2>
+                           {% if lessons.Notes %}
+                           
+                           <a href="{{lessons.Notes.url}}" download>
+                           <button type="button" class="btn btn-primary"><span>Get Files</span></button>
+                           </a>
+                           {% else %}
+                           <p class="card-text">Notes not available</p>
+                           {%endif%}
+     
+                         </div>
+                       </div>
+                     </div>
+                     <br>
+           <!-- download video -->
+                      <div class="video">
+                       <div class="card bg-white box-shadow-hover">
+                           <div class="card-body">
+                               <h2 class="card-title">Download Video</h2>
+                               {% if lessons.video %}
+                                   <a href="{{ lessons.video.url }}" download>
+                                       <button type="button" class="btn btn-primary"><span>Get Files</span></button>
+                                   </a>
+                               {% else %}
+                                   <p>No video available for download.</p>
+                               {% endif %}
+                           </div>
+                       </div>
+                     </div>
+       
+      </div>
         
         {% if user.userprofileinfo.user_type == 'teacher' or user.is_superuser %}
         <div class="update-button">
@@ -125,7 +210,7 @@
 
 
 <!-- custom js file link  -->
-<script src="js/script.js"></script>
+<script src="{% static 'js/script.js' %}"></script>
 
    
 </body>
