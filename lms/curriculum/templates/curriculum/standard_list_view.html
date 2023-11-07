@@ -89,12 +89,8 @@
     <div class="box-container">
         {% for standard in standards %}
             <div class="box">
-                <div class="tutor">
-                    <!-- Add tutor information if needed -->
-                </div>
                 <div class="thumb">
-                    <img src="{% static 'images/thumb-1.png' %}" alt="">
-                    <!-- Add any additional content like video count here -->
+                  <p>{{ standard.description }}</p>
                 </div>
                 <h3 class="title" style="text-align: center;">{{ standard.name }}</h3>
                 <div style="text-align: center;">

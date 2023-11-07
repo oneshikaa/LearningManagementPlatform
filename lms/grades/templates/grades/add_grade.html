@@ -14,6 +14,18 @@
    <!-- custom css file link  -->
    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
+   <style>
+      .heading {
+          /* font-size: 24px;
+          font-weight: bold; */
+          position: absolute;
+          top:100px; 
+          /* bottom: 20px; */
+          left: 320px; 
+          right : 100px;
+      }
+   </style>
+
 </head>
 <body>
 
@@ -78,15 +90,13 @@
 
  <section class="form-container">
 
-   <h1>Add Grade</h1>
+   <h1 class="heading">Add Grade</h1>
    <form method="post" enctype="multipart/form-data">
        {% csrf_token %}
        {{ form.as_p }}
        <button type="submit">Add Grade</button>
    </form>
-   <a href="{% url 'grades:list_grades' %}">Back to Grades List</a>
-   
-     </form>
+ 
 
 
 </section>
