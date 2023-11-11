@@ -45,7 +45,8 @@ INSTALLED_APPS = [
     'crispy_forms',
     # 'quiz',
     'certificates',
-    'grades'
+    'grades',
+    'notifications'
     
    
 ]
@@ -73,6 +74,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'app_users.context_processors.profile_image',
             ],
         },
     },
