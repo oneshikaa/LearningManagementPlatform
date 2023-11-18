@@ -45,8 +45,8 @@ INSTALLED_APPS = [
     'crispy_forms',
     # 'quiz',
     'certificates',
-    'grades',
-    'notifications'
+    'grades'
+    # 'notifications'
     
    
 ]
