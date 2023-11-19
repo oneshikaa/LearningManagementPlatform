@@ -38,15 +38,19 @@
       </div>
 
       <div class="profile">
-         <img src="{{ user_profile.profile_pic.url }}" alt="User Profile Image">
-         <h3 class="name">Your Name</h3>
-         <p class="role">Student</p>
+         {% if user.is_authenticated %}
+         <img src="{{ profile_image_url }}"  class="image" alt="User Profile Image">
+         <h3 class="name">{{ user_profile.user.username }}</h3>
          <a href="{% url 'view_profile' username=user.username %}" class="btn">view profile</a>
+         {% endif %}
+         {% if not user.is_authenticated %}
          <div class="flex-btn">
-            <a href="login.html" class="option-btn">login</a>
-            <a href="register.html" class="option-btn">register</a>
+            <a href="{% url 'user_login' %}" class="option-btn">login</a>
+            <a href="{% url 'register' %}" class="option-btn">register</a>
          </div>
+         {% endif %}
       </div>
+      
 
    </section>
 

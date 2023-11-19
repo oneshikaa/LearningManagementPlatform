@@ -35,6 +35,22 @@ class LessonDetailView(DetailView):
     # form_class = CommentForm
     # second_form_class = ReplyForm
 
+    def get_success_url(self):
+        self.object = self.get_object()
+        standard = self.object.Standard
+        subject = self.object.subject
+        return reverse_lazy('curriculum:lesson_detail',kwargs={'standard':standard.slug,
+                                                             'subject':subject.slug,
+                                                             'slug':self.object.slug})
+    def form_valid(self, form):
+        self.object = self.get_object()
+        fm = form.save(commit=False)
+        fm.author = self.request.user
+        fm.lesson_name = self.object.comments.name
+        fm.lesson_name_id = self.object.id
+        fm.save()
+        return HttpResponseRedirect(self.get_success_url())
+
 class LessonCreateView(CreateView):
     # fields = ('lesson_id','name','position','image','video','ppt','Notes')
     form_class = LessonForm
@@ -49,12 +65,21 @@ class LessonCreateView(CreateView):
                                                              'slug':self.object.slug})
 
 
+
     def form_valid(self, form, *args, **kwargs):
         self.object = self.get_object()
         fm = form.save(commit=False)
         fm.created_by = self.request.user
         fm.Standard = self.object.standard
         fm.subject = self.object
+        # Handle file uploads
+        if self.request.FILES.get('video'):
+            fm.video = self.request.FILES['video']
+        if self.request.FILES.get('ppt'):
+            fm.ppt = self.request.FILES['ppt']
+        if self.request.FILES.get('Notes'):
+            fm.Notes = self.request.FILES['Notes']
+
         fm.save()
         return HttpResponseRedirect(self.get_success_url())
     

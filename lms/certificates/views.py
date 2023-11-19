@@ -15,9 +15,9 @@ def add_certificate(request):
         form = CertificateForm(request.POST, request.FILES)
         if form.is_valid():
             certificate = form.save(commit=False)
-            certificate.uploader = request.user  # Assign the current user as the uploader
+            certificate.uploader = request.user  
             certificate.save()
-            return redirect('certificates:certificate_list')  # Redirect to the certificate list
+            return redirect('certificates:certificate_list')  
     else:
         form = CertificateForm()
 

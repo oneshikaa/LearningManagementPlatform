@@ -38,9 +38,7 @@
          </div>
 
          <div class="profile">
-            <img src="{{ user_profile.profile_pic.url }}" class="image" alt="">
-            <h3 class="name">{{ user_profile.user.username }}</h3>
-            <a href="{% url 'view_profile' username=user.username %}" class="btn">view profile</a>
+            
             <div class="flex-btn">
                <a href="{% url 'user_login' %}" class="option-btn">login</a>
                <a href="{% url 'register' %}" class="option-btn">register</a>
@@ -58,10 +56,7 @@
       </div>
 
       <div class="profile">
-         <img src="{{ user_profile.profile_pic.url }}" class="image" alt="">
-         <h3 class="name">{{ user_profile.user.username }}</h3>
-         <p class="role">{{ user_profile.user.user_type }}</p>
-         <a href="{% url 'view_profile' username=user.username %}" class="btn">view profile</a>
+         
       </div>
      
       <nav class="navbar">
