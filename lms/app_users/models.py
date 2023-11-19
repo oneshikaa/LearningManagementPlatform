@@ -24,7 +24,7 @@ class UserProfileInfo(models.Model):
     
     user_types = [
         (teacher, 'teacher'),
-        (student, 'student'),
+        (student, 'student')
         
     ]
     user_type = models.CharField(max_length=10, choices=user_types, default=student)
