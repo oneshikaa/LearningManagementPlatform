@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     # 'quiz',
     'certificates',
     'grades'
-    # 'notifications'
+    
     
    
 ]

@@ -51,67 +51,69 @@
 
 <body>
 
-   <header class="header">
+  <header class="header">
 
-      <section class="flex">
+    <section class="flex">
 
-         <a href="home.html" class="logo">LMS Platform</a>
+       <a href="home.html" class="logo">LMS Platform</a>
 
-         <form action="search.html" method="post" class="search-form">
-            <input type="text" name="search_box" required placeholder="search courses..." maxlength="100">
-            <button type="submit" class="fas fa-search"></button>
-         </form>
+       <form action="search.html" method="post" class="search-form">
+          <input type="text" name="search_box" required placeholder="search courses..." maxlength="100">
+          <button type="submit" class="fas fa-search"></button>
+       </form>
 
-         <div class="icons">
-            <div id="menu-btn" class="fas fa-bars"></div>
-            <div id="search-btn" class="fas fa-search"></div>
-            <div id="user-btn" class="fas fa-user"></div>
-            <div id="toggle-btn" class="fas fa-sun"></div>
-         </div>
+       <div class="icons">
+          <div id="menu-btn" class="fas fa-bars"></div>
+          <div id="search-btn" class="fas fa-search"></div>
+          <div id="user-btn" class="fas fa-user"></div>
+          <div id="toggle-btn" class="fas fa-sun"></div>
+       </div>
 
-         <div class="profile">
-            {% if user.is_authenticated %}
-            <img src="{{ user_profile.profile_pic.url }}" class="image" alt="">
-            <h3 class="name">{{ user_profile.user.username }}</h3>
-            <a href="{% url 'view_profile' username=user.username %}" class="btn">view profile</a>
-            {% endif %}
-            <div class="flex-btn">
-               <a href="{% url 'user_login' %}" class="option-btn">login</a>
-               <a href="{% url 'register' %}" class="option-btn">register</a>
-            </div>
-         </div>
-         
-      </section>
+       <div class="profile">
+          {% if user.is_authenticated %}
+          <img src="{{ profile_image_url }}"  class="image" alt="User Profile Image">
+          <h3 class="name">{{ user_profile.user.username }}</h3>
+          <a href="{% url 'view_profile' username=user.username %}" class="btn">view profile</a>
+          {% endif %}
+          {% if not user.is_authenticated %}
+          <div class="flex-btn">
+             <a href="{% url 'user_login' %}" class="option-btn">login</a>
+             <a href="{% url 'register' %}" class="option-btn">register</a>
+          </div>
+          {% endif %}
+       </div>
+       
+    </section>
 
-   </header>
+ </header>
 
-   <div class="side-bar">
+ <div class="side-bar">
 
-      <div id="close-btn">
-         <i class="fas fa-times"></i>
-      </div>
+    <div id="close-btn">
+       <i class="fas fa-times"></i>
+    </div>
 
-      <div class="profile">
-         <img src="{{ user_profile.profile_pic.url }}" class="image" alt="">
-         <h3 class="name">{{ user_profile.user.username }}</h3>
-         <p class="role">{{ user_profile.user.user_type }}</p>
-         {% if user.is_authenticated %}
-         <a href="{% url 'view_profile' username=user.username %}" class="btn">view profile</a>
-         {% endif %}
-      </div>
-     
-      <nav class="navbar">
-         <a href="{% url 'index' %}" ><i class="fas fa-home"></i><span>Home</span></a>
-         <a href="{% url 'curriculum:standard_list' %}" ><i class="fas fa-graduation-cap"></i><span>My Courses</span></a>
-         <a href="{% url 'certificates:certificate_list' %}"><i
-               class="fas fa-chalkboard-user"></i><span>Certificates</span></a>
-         <a href="{% url 'grades:list_grades' %}"><i class="fas fa-question"></i><span>Grades</span></a>
-         {% if user.is_authenticated %}
-         <a href="{% url 'user_logout' %}"><i class="fas fa-headset"></i><span>Logout</span></a>
-         {% endif %}
-      </nav>
+    <div class="profile">
+       <img src="{{ profile_image_url }}"  class="image" alt="User Profile Image">
+       <h3 class="name">{{ user_profile.user.username }}</h3>
+       <p class="role">{{ user_profile.user.user_type }}</p>
+       {% if user.is_authenticated %}
+       <a href="{% url 'view_profile' username=user.username %}" class="btn">view profile</a>
+       {% endif %}
+    </div>
+   
+    <nav class="navbar">
+       <a href="{% url 'index' %}" ><i class="fas fa-home"></i><span>Home</span></a>
+       <a href="{% url 'curriculum:standard_list' %}" ><i class="fas fa-graduation-cap"></i><span>My Courses</span></a>
+       <a href="{% url 'certificates:certificate_list' %}"><i
+             class="fas fa-chalkboard-user"></i><span>Certificates</span></a>
+       <a href="{% url 'grades:list_grades' %}"><i class="fas fa-question"></i><span>Grades</span></a>
+       {% if user.is_authenticated %}
+       <a href="{% url 'user_logout' %}"><i class="fas fa-headset"></i><span>Logout</span></a>
+       {% endif %}
+    </nav>
 
-   </div>
+ </div>
 
 <section class="playlist-videos">
 
