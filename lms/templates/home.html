@@ -102,17 +102,19 @@
             <div class="box">
                 <h3 class="title" style="text-align: center;">{{ standard.name }}</h3>
                 <p style="text-align: center;">{{ standard.description }}</p>
+                {% if user.is_authenticated %}
                 <div style="text-align: center;">
                     <a href="{% url 'curriculum:subject_list' slug=standard.slug %}" class="inline-btn">View Semester Courses</a>
-                </div>    
+                </div> 
+                {% endif %}   
             </div>
         {% endfor %}
       </div>
-
+      {% if user.is_authenticated %}
       <div class="more-btn">
          <a href="{% url 'curriculum:standard_list' %}" class="inline-option-btn">view all courses</a>
       </div>
-
+      {% endif %}
    </section>
 
 
