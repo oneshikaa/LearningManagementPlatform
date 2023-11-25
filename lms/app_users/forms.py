@@ -33,3 +33,7 @@ class UserProfileInfoForm(forms.ModelForm):
     class Meta():
         model = UserProfileInfo
         fields = ('bio', 'profile_pic', 'user_type')
+
+    def __init__(self, *args, **kwargs):
+        super(UserProfileInfoForm, self).__init__(*args, **kwargs)
+        self.fields['profile_pic'].required = True  # Set profile_pic as required

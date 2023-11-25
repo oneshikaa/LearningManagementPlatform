@@ -78,7 +78,7 @@
    {% if registered %}
     <h1>Thank you for registering</h1>
   {% else %}
-      <h3>Fill the form: </h3>
+      <!-- <h3>Fill the form: </h3> -->
       <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ user_form|crispy }}
