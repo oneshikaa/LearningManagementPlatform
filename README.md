@@ -69,7 +69,7 @@ The platform encompasses major features such as user, course, content, and grade
 ### User Classes and Characteristics
 Users include admin,students,instructors with varying technical expertise and educational levels. The platform aims to be user-friendly for all levels of technical proficiency.
 
-![Use Case Diagram](screenshots/use_case.png)
+<img src="screenshots/use_case.png" alt="User Dashboard" width="400"/>
 
 ### Operating Environment
 The LMS platform operates within a web-based environment, utilizing Django for the backend and supports various browsers and operating systems.
