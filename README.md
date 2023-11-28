@@ -1,5 +1,8 @@
 # Learning Management System (LMS) Platform
 
+![User Dashboard](screenshots/Screenshot 2023-11-28 182322.png)
+
+
 ## Project Overview
 
 This Learning Management System (LMS) platform is designed to provide a comprehensive educational solution. Below is an outline of its typical scope:
