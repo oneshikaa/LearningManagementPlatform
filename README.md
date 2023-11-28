@@ -1,8 +1,5 @@
 # Learning Management System (LMS) Platform
 
-![User Dashboard](screenshots/Screenshot 2023-11-28 182322.png)
-
-
 ## Project Overview
 
 This Learning Management System (LMS) platform is designed to provide a comprehensive educational solution. Below is an outline of its typical scope:
@@ -71,6 +68,8 @@ The platform encompasses major features such as user, course, content, and grade
 
 ### User Classes and Characteristics
 Users include admin,students,instructors with varying technical expertise and educational levels. The platform aims to be user-friendly for all levels of technical proficiency.
+
+![Use Case Diagram](screenshots/use_case.png)
 
 ### Operating Environment
 The LMS platform operates within a web-based environment, utilizing Django for the backend and supports various browsers and operating systems.
