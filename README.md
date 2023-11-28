@@ -1,5 +1,5 @@
 # Learning Management System (LMS) Platform
-<img src="screenshots/user_dashboard.png" alt="User Dashboard" width="400"/>
+<img src="screenshots/user_dashboard.png" alt="User Dashboard" width="700"/>
 
 
 ## Project Overview
