@@ -68,6 +68,8 @@ The LMS platform is a self-contained product developed from scratch. It serves a
 ### Product Features
 The platform encompasses major features such as user, course, content, and grades management.
 
+<img src="screenshots/activity_diagram.jpg.png" alt="User Dashboard" width="400"/>
+
 ### User Classes and Characteristics
 Users include admin,students,instructors with varying technical expertise and educational levels. The platform aims to be user-friendly for all levels of technical proficiency.
 
